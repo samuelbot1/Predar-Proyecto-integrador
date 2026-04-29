@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.predar.predar.controller.LidarController"
+            style="-fx-background-color: #0d1117;"
+            fx:id="rootPane">
+
+    <!-- PANEL IZQUIERDO -->
+    <left>
+        <VBox spacing="8" prefWidth="185"
+              style="-fx-background-color: #161b22;
+                     -fx-padding: 16;
+                     -fx-border-color: #30363d;
+                     -fx-border-width: 0 1 0 0;">
+
+            <!-- Logo -->
+            <Label text="⛏ PREDAR"
+                   style="-fx-text-fill: #58a6ff; -fx-font-size: 17; -fx-font-weight: bold;"/>
+            <Label text="Seguridad Minera"
+                   style="-fx-text-fill: #8b949e; -fx-font-size: 10;"/>
+            <Separator style="-fx-background-color: #30363d;"/>
+
+            <!-- Navegacion -->
+            <Label text="NAVEGACIÓN"
+                   style="-fx-text-fill: #484f58; -fx-font-size: 10; -fx-font-weight: bold;"/>
+
+            <Button text="📊  Dashboard" prefWidth="165"
+                    onAction="#handleBackToDashboard"
+                    style="-fx-background-color: #21262d; -fx-text-fill: #8b949e;
+                           -fx-background-radius: 6; -fx-font-size: 12;"/>
+            <Button text="🗺  Mapa LiDAR" prefWidth="165"
+                    style="-fx-background-color: #1f6feb; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-font-size: 12;"/>
+            <Button text="📁  Archivos" prefWidth="165"
+                    style="-fx-background-color: #21262d; -fx-text-fill: #8b949e;
+                           -fx-background-radius: 6; -fx-font-size: 12;"/>
+            <Button text="⚙  Configuración" prefWidth="165"
+                    style="-fx-background-color: #21262d; -fx-text-fill: #8b949e;
+                           -fx-background-radius: 6; -fx-font-size: 12;"/>
+
+            <Separator style="-fx-background-color: #30363d;"/>
+
+            <!-- Controles LiDAR -->
+            <Label text="LIDAR"
+                   style="-fx-text-fill: #484f58; -fx-font-size: 10; -fx-font-weight: bold;"/>
+
+            <Button text="📂  Cargar CSV" prefWidth="165"
+                    onAction="#handleLoadCSV"
+                    style="-fx-background-color: #238636; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-font-size: 12;"/>
+
+            <Button text="🔍  Analizar Deformaciones" prefWidth="165"
+                    onAction="#handleAnalyzeDeformations"
+                    style="-fx-background-color: #6e40c9; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-font-size: 12;"/>
+
+            <Button text="⚠  Analizar Riesgo Colapso" prefWidth="165"
+                    onAction="#handleRiskAnalysis"
+                    style="-fx-background-color: #b91c1c; -fx-text-fill: white;
+               -fx-background-radius: 6; -fx-font-size: 12;"/>
+
+            <Button text="👁  Mostrar/Ocultar Zonas" prefWidth="165"
+                    onAction="#handleToggleDeformations"
+                    style="-fx-background-color: #21262d; -fx-text-fill: #8b949e;
+                           -fx-background-radius: 6; -fx-font-size: 12;"/>
+
+            <Button text="🔄  Resetear Vista" prefWidth="165"
+                    onAction="#handleResetView"
+                    style="-fx-background-color: #21262d; -fx-text-fill: #8b949e;
+                           -fx-background-radius: 6; -fx-font-size: 12;"/>
+
+            <Separator style="-fx-background-color: #30363d;"/>
+
+            <!-- Analisis -->
+            <Label text="ANÁLISIS"
+                   style="-fx-text-fill: #484f58; -fx-font-size: 10; -fx-font-weight: bold;"/>
+
+            <Label fx:id="deformationLabel"
+                   text="Sin analizar"
+                   style="-fx-text-fill: #8b949e; -fx-font-size: 11;"
+                   wrapText="true"/>
+
+            <Separator style="-fx-background-color: #30363d;"/>
+
+            <!-- Leyenda -->
+            <Label text="ALTURA (Z)"
+                   style="-fx-text-fill: #484f58; -fx-font-size: 10; -fx-font-weight: bold;"/>
+
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="■" style="-fx-text-fill: #e53935; -fx-font-size: 13;"/>
+                <Label text="Alto" style="-fx-text-fill: #8b949e; -fx-font-size: 11;"/>
+            </HBox>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="■" style="-fx-text-fill: #ffb300; -fx-font-size: 13;"/>
+                <Label text="Medio-alto" style="-fx-text-fill: #8b949e; -fx-font-size: 11;"/>
+            </HBox>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="■" style="-fx-text-fill: #43a047; -fx-font-size: 13;"/>
+                <Label text="Medio-bajo" style="-fx-text-fill: #8b949e; -fx-font-size: 11;"/>
+            </HBox>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="■" style="-fx-text-fill: #1976d2; -fx-font-size: 13;"/>
+                <Label text="Bajo" style="-fx-text-fill: #8b949e; -fx-font-size: 11;"/>
+            </HBox>
+
+            <Separator style="-fx-background-color: #30363d;"/>
+
+            <!-- Zonas de riesgo -->
+            <Label text="ZONAS DE RIESGO"
+                   style="-fx-text-fill: #484f58; -fx-font-size: 10; -fx-font-weight: bold;"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="●" style="-fx-text-fill: #f85149; -fx-font-size: 13;"/>
+                <Label text="Crítico" style="-fx-text-fill: #8b949e; -fx-font-size: 11;"/>
+            </HBox>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="●" style="-fx-text-fill: #d29922; -fx-font-size: 13;"/>
+                <Label text="Advertencia" style="-fx-text-fill: #8b949e; -fx-font-size: 11;"/>
+            </HBox>
+
+        </VBox>
+    </left>
+
+    <!-- PANEL CENTRAL -->
+    <center>
+        <VBox spacing="8" style="-fx-padding: 16;">
+
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="Visualizador LiDAR 3D"
+                       style="-fx-text-fill: #e6edf3; -fx-font-size: 20; -fx-font-weight: bold;"/>
+                <Label text="● EN VIVO"
+                       style="-fx-text-fill: #3fb950; -fx-font-size: 10;"/>
+            </HBox>
+
+            <!-- Info bar -->
+            <HBox spacing="20" alignment="CENTER_LEFT"
+                  style="-fx-background-color: #161b22;
+                         -fx-padding: 8 12;
+                         -fx-background-radius: 6;
+                         -fx-border-color: #30363d;
+                         -fx-border-radius: 6;">
+                <Label fx:id="statusLabel" text="Sin archivo cargado"
+                       style="-fx-text-fill: #8b949e; -fx-font-size: 12;"/>
+                <Label text="|" style="-fx-text-fill: #30363d;"/>
+                <Label fx:id="pointCountLabel" text="Puntos: 0"
+                       style="-fx-text-fill: #58a6ff; -fx-font-size: 12;"/>
+                <Label text="|" style="-fx-text-fill: #30363d;"/>
+                <Label fx:id="coordsLabel" text="X: —  Y: —"
+                       style="-fx-text-fill: #8b949e; -fx-font-size: 12;"/>
+            </HBox>
+
+            <!-- Visor -->
+            <StackPane fx:id="viewerStack" VBox.vgrow="ALWAYS">
+
+                <Pane fx:id="viewerPane"
+                      style="-fx-background-color: #010409;
+                             -fx-border-color: #30363d;
+                             -fx-border-radius: 8;
+                             -fx-background-radius: 8;"/>
+
+                <!-- Overlay de carga -->
+                <VBox fx:id="loadingOverlay"
+                      alignment="CENTER" spacing="14"
+                      visible="false"
+                      style="-fx-background-color: rgba(1,4,9,0.90);
+                             -fx-background-radius: 8;">
+                    <Label text="⏳" style="-fx-font-size: 38;"/>
+                    <Label text="Procesando..."
+                           style="-fx-text-fill: #58a6ff;
+                                  -fx-font-size: 15;
+                                  -fx-font-weight: bold;"/>
+                    <Label fx:id="loadingDetail"
+                           text="Procesando archivo"
+                           style="-fx-text-fill: #8b949e; -fx-font-size: 12;"/>
+                    <ProgressBar fx:id="loadingBar"
+                                 prefWidth="280"
+                                 progress="-1"
+                                 style="-fx-accent: #6e40c9;"/>
+                    <Label text="Por favor espera..."
+                           style="-fx-text-fill: #484f58; -fx-font-size: 10;"/>
+                </VBox>
+
+            </StackPane>
+
+            <!-- Footer -->
+            <HBox spacing="20" alignment="CENTER">
+                <Label text="🖱 Arrastra para rotar"
+                       style="-fx-text-fill: #484f58; -fx-font-size: 11;"/>
+                <Label text="•" style="-fx-text-fill: #484f58;"/>
+                <Label text="Scroll para zoom"
+                       style="-fx-text-fill: #484f58; -fx-font-size: 11;"/>
+                <Label text="•" style="-fx-text-fill: #484f58;"/>
+                <Label text="🔄 Resetear vista"
+                       style="-fx-text-fill: #484f58; -fx-font-size: 11;"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,57 @@
+/* ── Alertas de texto ── */
+.alert-normal {
+    -fx-text-fill: #3fb950;
+    -fx-font-weight: bold;
+}
+
+.alert-warning {
+    -fx-text-fill: #d29922;
+    -fx-font-weight: bold;
+}
+
+.alert-critical {
+    -fx-text-fill: #f85149;
+    -fx-font-weight: bold;
+}
+
+/* ── Tarjetas de gas ── */
+.card-normal {
+    -fx-border-color: #3fb950 !important;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+}
+
+.card-warning {
+    -fx-border-color: #d29922 !important;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+}
+
+.card-critical {
+    -fx-border-color: #f85149 !important;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(gaussian, #f85149, 10, 0.3, 0, 0);
+}
+
+/* ── Punto de estado ── */
+.dot-normal {
+    -fx-fill: #3fb950;
+    -fx-effect: dropshadow(gaussian, #3fb950, 8, 0.5, 0, 0);
+}
+
+.dot-warning {
+    -fx-fill: #d29922;
+    -fx-effect: dropshadow(gaussian, #d29922, 8, 0.5, 0, 0);
+}
+
+.dot-critical {
+    -fx-fill: #f85149;
+    -fx-effect: dropshadow(gaussian, #f85149, 8, 0.5, 0, 0);
+}
+
+/* ── Botones laterales hover ── */
+.button:hover {
+    -fx-opacity: 0.85;
+    -fx-cursor: hand;
+}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.predar.predar.controller.LoginController"
+            style="-fx-background-color: #0d1117;"
+            prefWidth="480" prefHeight="580">
+
+    <center>
+        <VBox spacing="20" alignment="CENTER"
+              style="-fx-padding: 50;">
+
+            <!-- Logo y título -->
+            <VBox alignment="CENTER" spacing="6">
+                <Label text="⛏"
+                       style="-fx-font-size: 52;"/>
+                <Label text="PREDAR"
+                       style="-fx-text-fill: #58a6ff;
+                              -fx-font-size: 32;
+                              -fx-font-weight: bold;"/>
+                <Label text="Sistema de Seguridad Minera"
+                       style="-fx-text-fill: #8b949e;
+                              -fx-font-size: 13;"/>
+            </VBox>
+
+            <!-- Tarjeta de login -->
+            <VBox spacing="14" alignment="CENTER"
+                  style="-fx-background-color: #161b22;
+                         -fx-background-radius: 10;
+                         -fx-border-color: #30363d;
+                         -fx-border-radius: 10;
+                         -fx-padding: 30;">
+
+                <!-- Usuario -->
+                <VBox spacing="5">
+                    <Label text="Usuario"
+                           style="-fx-text-fill: #8b949e; -fx-font-size: 12;"/>
+                    <TextField fx:id="usernameField"
+                               promptText="Ingresa tu usuario"
+                               prefWidth="320"
+                               style="-fx-background-color: #0d1117;
+                                      -fx-text-fill: #e6edf3;
+                                      -fx-prompt-text-fill: #484f58;
+                                      -fx-border-color: #30363d;
+                                      -fx-border-radius: 6;
+                                      -fx-background-radius: 6;
+                                      -fx-padding: 10;
+                                      -fx-font-size: 13;"/>
+                </VBox>
+
+                <!-- Contraseña -->
+                <VBox spacing="5">
+                    <Label text="Contraseña"
+                           style="-fx-text-fill: #8b949e; -fx-font-size: 12;"/>
+                    <PasswordField fx:id="passwordField"
+                                   promptText="Ingresa tu contraseña"
+                                   prefWidth="320"
+                                   style="-fx-background-color: #0d1117;
+                                          -fx-text-fill: #e6edf3;
+                                          -fx-prompt-text-fill: #484f58;
+                                          -fx-border-color: #30363d;
+                                          -fx-border-radius: 6;
+                                          -fx-background-radius: 6;
+                                          -fx-padding: 10;
+                                          -fx-font-size: 13;"/>
+                </VBox>
+
+                <!-- Recordarme -->
+                <HBox alignment="CENTER_LEFT" prefWidth="320">
+                    <CheckBox fx:id="rememberCheckbox"
+                              text="Recordarme en este equipo"
+                              style="-fx-text-fill: #8b949e;
+                                     -fx-font-size: 12;"/>
+                </HBox>
+
+                <!-- Error -->
+                <Label fx:id="errorLabel"
+                       text=""
+                       visible="false"
+                       style="-fx-text-fill: #f85149; -fx-font-size: 12;"/>
+
+                <!-- Botón -->
+                <Button text="Iniciar Sesión"
+                        prefWidth="320"
+                        onAction="#handleLogin"
+                        style="-fx-background-color: #1f6feb;
+                               -fx-text-fill: white;
+                               -fx-font-size: 14;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 6;
+                               -fx-padding: 12;
+                               -fx-cursor: hand;"/>
+            </VBox>
+
+            <!-- Pie -->
+            <Label text="Usuario por defecto: admin / predar123"
+                   style="-fx-text-fill: #484f58; -fx-font-size: 11;"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>
